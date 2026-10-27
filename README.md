@@ -1,32 +1,26 @@
 # 徐塬富 · Yuanfu Xu
 
-C9 金融硕士，做过三次创业，现在独立做 AI Agent 运行时基建。
+金融硕士，现在在做 Agent 运行时的底层控制。不是科班出身，所以更怕「这东西是什么时候悄悄坏掉的」。
 
-我不喜欢纸上谈兵。擅长在极端资源约束下解决问题：5 美元的 API 预算、5 个夜晚的业余时间，一样能做出带完整测试和发版流程的东西。
+**一句话**：给 agent 完全权限是危险的，只给它一个沙箱又憋屈。我想在中间造一个可调的管家——权限给够，但每一笔都记账。
 
-Agent 不能裸奔，也不该被死死关在沙盒里。它需要一条既能自由奔跑、又能随时被拉住的缰绳。
+## 在做什么
 
-## 当前专注：为 agent 做韧性架构
+| 项目 | 它解决什么 |
+|---|---|
+| [dsh-confirm-gate](https://github.com/SteelUnion/dsh-confirm-gate) | 控制面。按轮数持久化操作，到额度先提醒、再要求停下、最后才问人。沙箱足以自保的模式下它保持沉默。 |
+| [dsh-softsensor-hub](https://github.com/SteelUnion/dsh-softsensor-hub) | 感知面。统一收系统告警、天气、邮件、行情，判轻重再决定叫不叫醒你。四个采集器跑在插件进程里，793 项测试。它自己不动手。 |
+| [dsh-wechat-queue](https://github.com/SteelUnion/dsh-wechat-queue) | 输入通道。微信消息先落盘再处理，严格串行，重启不丢。 |
+| [dsh-plugin-manual](https://github.com/SteelUnion/dsh-plugin-manual) | 八册手记：通用四册（命令、网络、调试）+ DSH 内核四册（钩子、终态、注入门、发版）。踩过的坑都写进去了。 |
+| [quant-toolkit](https://github.com/SteelUnion/quant-toolkit) | 一份能自己重建的 A 股数据库。5,600+ 标的，单个 SQLite，增量刷新。 |
+| [exam-adb-pipeline](https://github.com/SteelUnion/exam-adb-pipeline) | 给一个不肯开接口的 App 装上眼睛和手。ADB + 节点树 + 手势 + OCR。 |
 
-模型有注意力缺陷，也会幻觉。直接给完全权限，它会乱删文件、死锁、烧钱。我给 DeepSeek Harness 生态做底层基建：
-
-**[dsh-confirm-gate](https://github.com/SteelUnion/dsh-confirm-gate) · 方向盘**
-权限全开时它会乱跑，成本失控。这个插件读写分开算：翻文件不计次，动手才计次；每动一步都提醒它来问你，到上限才硬停。不限制它的智力，只守住你的钱包和代码库。已收录进 awesome-dsh-plugin。
-
-**[dsh-wechat-queue](https://github.com/SteelUnion/dsh-wechat-queue) · 远程遥控**
-微信里跟 agent 说话。多条消息并发会写乱，这个插件严格串行、消息先落盘，进程崩了重启接着处理。
-
-**[dsh-softsensor-hub](https://github.com/SteelUnion/dsh-softsensor-hub) · 仪表盘**
-系统告警、邮件、行情一股脑推给你，人会麻木。按紧急程度分三级：急的立刻叫，一般的攒一批，不重要的只留档。带游戏模式，打游戏时不弹窗。
-
-## 正在做
-
-`dsh-plugin-manual`：八册手记，DSH 的钩子、终态、注入门、发版。踩过的坑都写进去了。手册的目的是让 agent 自己查得到该用的接口，不用每轮重新猜。
+前两个已收录进 [awesome-dsh-plugin](https://github.com/awesome-dsh-plugin/awesome-dsh-plugin)。
 
 ## 几条我在意的
 
 - 没有终态的流程等于没有流程。「卡住」和「在干活」从外面看是一样的。
-- 路径隔离管的是「写到哪」，不管「写多少」。
+- 路径隔离管的是「写到哪」，不管「写多少」。四十次都合法的写入，照样能重写一个项目。
 - 没有审计的拦截，事后说不清到底拦了什么。
 
 > 刹车不是墙。墙只告诉你不能走，刹车让你知道自己开多快。
