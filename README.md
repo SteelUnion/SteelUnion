@@ -8,6 +8,7 @@
 
 | 项目 | 它解决什么 |
 |---|---|
+| [dsh-kb-plugin](https://github.com/SteelUnion/dsh-kb-plugin) | **认知面 · 新**。把 DSH 的 cordis 服务图画成三维分子 —— 14 层、125 个服务、59 组层间依赖一眼看全，再在这张图上自己组插件链：一拖多、多拖一、A/O 两种触发边，最后直出 `inject` 清单和插件骨架。**插件链已可用，在找内测。** |
 | [dsh-confirm-gate](https://github.com/SteelUnion/dsh-confirm-gate) | 控制面。按轮数持久化操作，到额度先提醒、再要求停下、最后才问人。沙箱足以自保的模式下它保持沉默。 |
 | [dsh-softsensor-hub](https://github.com/SteelUnion/dsh-softsensor-hub) | 感知面。统一收系统告警、天气、邮件、行情，判轻重再决定叫不叫醒你。四个采集器跑在插件进程里，793 项测试。它自己不动手。 |
 | [dsh-wechat-queue](https://github.com/SteelUnion/dsh-wechat-queue) | 输入通道。微信消息先落盘再处理，严格串行，重启不丢。 |
@@ -15,7 +16,7 @@
 | [quant-toolkit](https://github.com/SteelUnion/quant-toolkit) | 一份能自己重建的 A 股数据库。5,600+ 标的，单个 SQLite，增量刷新。 |
 | [exam-adb-pipeline](https://github.com/SteelUnion/exam-adb-pipeline) | 给一个不肯开接口的 App 装上眼睛和手。ADB + 节点树 + 手势 + OCR。 |
 
-前两个已收录进 [awesome-dsh-plugin](https://github.com/awesome-dsh-plugin/awesome-dsh-plugin)。
+前三个已收录进 [awesome-dsh-plugin](https://github.com/awesome-dsh-plugin/awesome-dsh-plugin)。
 
 ## 几条我在意的
 
